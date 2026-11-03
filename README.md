@@ -73,9 +73,6 @@ my-brand/
 |---|---|
 | [`skills/ig-studio/`](skills/ig-studio/) | The skill |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin and marketplace manifests |
-| [`GOAL.md`](GOAL.md) | Why it exists |
-| [`DESIGN.md`](DESIGN.md) | How it behaves |
-| [`PLAN.md`](PLAN.md) | Build steps and status |
 
 Run the tests:
 
