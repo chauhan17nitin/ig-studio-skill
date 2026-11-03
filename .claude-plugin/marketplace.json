@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ig-studio",
+  "description": "ig-studio, a weekly Instagram content system for Claude",
+  "owner": {
+    "name": "Nitin Chauhan"
+  },
+  "allowCrossMarketplaceDependenciesOn": ["instagram-agent-skill"],
+  "plugins": [
+    {
+      "name": "ig-studio",
+      "description": "Runs a brand's Instagram content as a weekly system: plans the week, creates the posts and files them in a calendar, ready to upload.",
+      "source": "./",
+      "category": "productivity",
+      "dependencies": [
+        { "name": "instagram-agent", "marketplace": "instagram-agent-skill" }
+      ]
+    }
+  ]
+}

@@ -25,7 +25,6 @@ Run it from a recurring task, or type "generate next week's content". The recurr
 ## Requirements
 
 - Claude Code or the Claude desktop app
-- The [`ig-*` skills](https://github.com/Jakeschincariol/instagram-agent-skill)
 - Node 18 or newer
 - `python3`
 - `ffmpeg` with `libx264`
@@ -33,15 +32,21 @@ Run it from a recurring task, or type "generate next week's content". The recurr
 
 ## Install
 
+Add both marketplaces, then install. This also installs `instagram-agent`, the plugin with the `ig-*` skills.
+
 ```bash
-git clone <repo-url>
+claude plugin marketplace add Jakeschincariol/instagram-agent-skill
 ```
 
 ```bash
-cp -R <repo-folder>/ig-studio ~/.claude/skills/ig-studio
+claude plugin marketplace add <owner>/<repo>
 ```
 
-Then ask Claude to set up Instagram content for your brand. Setup checks the requirements and shows how to install anything missing.
+```bash
+claude plugin install ig-studio@ig-studio
+```
+
+Then ask Claude to set up Instagram content for your brand. Setup checks the other requirements and shows how to install anything missing.
 
 ## What you get
 
@@ -66,7 +71,8 @@ my-brand/
 
 | Path | Contents |
 |---|---|
-| [`ig-studio/`](ig-studio/) | The skill |
+| [`skills/ig-studio/`](skills/ig-studio/) | The skill |
+| [`.claude-plugin/`](.claude-plugin/) | Plugin and marketplace manifests |
 | [`GOAL.md`](GOAL.md) | Why it exists |
 | [`DESIGN.md`](DESIGN.md) | How it behaves |
 | [`PLAN.md`](PLAN.md) | Build steps and status |
@@ -74,9 +80,9 @@ my-brand/
 Run the tests:
 
 ```bash
-node --test ig-studio/scripts/*.test.mjs
+node --test skills/ig-studio/scripts/*.test.mjs
 ```
 
 ## Credits
 
-Writing and analysis come from [instagram-agent-skill](https://github.com/Jakeschincariol/instagram-agent-skill) by Jake Schincariol (MIT). It's a separate install and isn't copied into this repo.
+Writing and analysis come from [instagram-agent-skill](https://github.com/Jakeschincariol/instagram-agent-skill) by Jake Schincariol (MIT). It installs as a separate plugin and isn't copied into this repo.

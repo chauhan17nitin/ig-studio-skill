@@ -1,0 +1,12 @@
+{
+  "name": "ig-studio",
+  "description": "Runs a brand's Instagram content as a weekly system: plans the week, creates the posts and files them in a calendar, ready to upload.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nitin Chauhan"
+  },
+  "keywords": ["instagram", "content", "calendar", "reels", "carousels", "marketing"],
+  "dependencies": [
+    { "name": "instagram-agent", "marketplace": "instagram-agent-skill" }
+  ]
+}
