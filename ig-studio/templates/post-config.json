@@ -1,0 +1,19 @@
+{
+  "container": "reel",
+  "template": "../../../formats/FORMAT/template.html",
+  "data": {},
+  "timing": { "maxSeconds": 20 },
+  "frames": [
+    { "id": "frame-1", "text": "Text shown on this frame, used for reading time", "state": {} }
+  ],
+  "endCard": {
+    "image": "../../../assets/end-card.png",
+    "text": "Brand name",
+    "tagline": "Short tagline",
+    "background": "#ffffff",
+    "color": "#111111"
+  },
+  "audio": [
+    { "file": "../../../assets/sounds/end-card.mp3", "at": "endCard" }
+  ]
+}

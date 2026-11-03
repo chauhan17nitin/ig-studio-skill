@@ -1,0 +1,8 @@
+stage: check
+igSkillsDir:
+history:            # none, or the date it was read
+competitors:        # skipped, or the date it was read
+insights:           # browser or paste
+chosenFormats: []
+runsWithoutData: 0
+lastRun:

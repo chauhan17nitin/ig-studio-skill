@@ -1,0 +1,22 @@
+# Test projects: real account details, local paths and rendered media
+test-runs/
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies and logs
+node_modules/
+*.log
+
+# Local Claude settings
+.claude/settings.local.json
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

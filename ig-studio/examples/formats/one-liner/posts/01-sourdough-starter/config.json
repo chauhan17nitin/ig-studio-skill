@@ -1,0 +1,21 @@
+{
+  "container": "reel",
+  "template": "../../template.html",
+  "data": {
+    "background": "#fbf6ec",
+    "color": "#3b2a1a",
+    "lines": ["My sourdough starter has a name.", "It also has more followers than me."]
+  },
+  "frames": [
+    { "id": "line-1", "text": "My sourdough starter has a name.", "state": { "show": 1 } },
+    { "id": "line-2", "text": "It also has more followers than me.", "state": { "show": 2 } }
+  ],
+  "endCard": {
+    "image": "assets/end-card.png",
+    "text": "Fern & Loaf",
+    "tagline": "Slow bread, baked nearby",
+    "background": "#fbf6ec",
+    "color": "#3b2a1a"
+  },
+  "audio": [{ "file": "assets/ding.mp3", "at": "endCard" }]
+}
