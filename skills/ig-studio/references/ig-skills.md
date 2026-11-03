@@ -1,18 +1,10 @@
 # Using the ig-* skills
 
-Source: [instagram-agent-skill](https://github.com/Jakeschincariol/instagram-agent-skill) by Jake Schincariol, MIT. Tested against commit `d03c56bb598be770c60b201f94237e5d1a4268a6`. The location of the installed tools is `igSkillsDir` in `state.yaml`. Plugin installs may name them `instagram-agent:ig-reel`.
+Source: [instagram-agent-skill](https://github.com/Jakeschincariol/instagram-agent-skill) by Jake Schincariol, MIT. Tested against commit `d03c56bb598be770c60b201f94237e5d1a4268a6`. Plugin installs may name them `instagram-agent:ig-reel`.
 
-## Who does what
+Each tool, such as `hookscore.py`, sits beside its skill's `SKILL.md`. Find that folder at run time and call the tool by its full path; never save the path, because it changes when the plugin updates.
 
-| Job | Skill | Tool |
-|---|---|---|
-| Read past results | `ig-audit` | |
-| Research other accounts | `ig-viral` | `swipe.py` |
-| Arrange a week | `ig-plan` | |
-| Reel copy | `ig-reel` | `hookscore.py`, plus `beats.py` for spoken scripts |
-| Carousel copy | `ig-carousel` | |
-| Captions, including single images (Job B) | `ig-caption` | `caption.py` |
-| Clean up text | `ig-human` | `humanize.py`, `detect.py` |
+Single-image captions use `ig-caption` Job B.
 
 ## Which rules win
 
@@ -22,16 +14,9 @@ Weekly plans contain posts only. Leave out `ig-plan`'s stories and engagement li
 
 ## Project files replace global ones
 
-Tell each skill to use these in place of `~/.claude/instagram/`:
+Tell each skill to use the project's `voice.md`, `swipe.md` and `log.md` in place of those in `~/.claude/instagram/`, and this week's plan in `calendar/` in place of `plan.md`. Their scripts take file paths, so pass project paths: `swipe.py captured.tsv --out <project>/swipe.md`. Write temporary drafts to the post's folder and delete them when it's finished.
 
-| Skill's path | Project path |
-|---|---|
-| `voice.md` | `voice.md` |
-| `swipe.md` | `swipe.md` |
-| `log.md` | `log.md` |
-| `plan.md` | This week's plan in `calendar/` |
-
-Their scripts take file paths, so pass project paths: `swipe.py captured.tsv --out <project>/swipe.md`. Write temporary drafts to the post's folder and delete them when it's finished.
+Carousels are rendered with `render.mjs`, not printed to PDF as `ig-carousel` suggests.
 
 ## When nobody is present
 
@@ -51,7 +36,7 @@ Scores inform a decision and don't replace the format's rules.
 
 | Tool result | Action |
 |---|---|
-| `hookscore.py` | Score at least 3 candidates per post, using the full on-screen line for a multi-line hook and the cover line for a carousel. Pick the best that still follows the format and sounds like the brand. Under 50 after 3 rewrites: keep the best and note `weak hook` in the summary. Record any formula used in `checks.md` |
+| `hookscore.py` | Score at least 3 candidates per post, using the full on-screen line for a multi-line hook and the cover line for a carousel. Pick the best that still follows the format and sounds like the brand. Under 50 after 3 rewrites: keep the best and note `weak hook` in the summary. Record any formula used in the Formula column of `log.md` |
 | `caption.py` FAIL | Fix it. Still failing after 3 tries: mark the post `NEEDS INPUT` |
 | `caption.py` WARN | Fix it if the tool is right. If not, note the reason in the post's `checks.md`. Its ask check misses some real asks, such as "Send this to" and "It's in the bio" |
 | `humanize.py` | Run on all copy and captions, then re-read the result, because automatic swaps can break a joke or a brand term |
