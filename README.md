@@ -39,7 +39,7 @@ claude plugin marketplace add Jakeschincariol/instagram-agent-skill
 ```
 
 ```bash
-claude plugin marketplace add <owner>/<repo>
+claude plugin marketplace add chauhan17nitin/ig-studio-skill
 ```
 
 ```bash
