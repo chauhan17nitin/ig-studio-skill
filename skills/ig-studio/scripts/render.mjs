@@ -21,11 +21,18 @@ function main(arg) {
   if (!arg) throw new Error("Usage: node render.mjs path/to/config.json");
   const dir = dirname(resolve(arg));
   const config = JSON.parse(readFileSync(arg, "utf8"));
+  if (!Array.isArray(config.frames) || config.frames.length === 0) throw new Error(`${arg} needs a non-empty "frames" list.`);
+  if (!config.template) throw new Error(`${arg} needs a "template" path.`);
+  if (config.frames.some((frame) => !frame.id)) throw new Error("Every frame needs an \"id\".");
   const isReel = (config.container ?? "reel") === "reel";
   const template = resolve(dir, config.template);
   if (!existsSync(template)) throw new Error(`Template not found: ${template}`);
   const chrome = CHROMES.filter(Boolean).find((path) => existsSync(path));
-  if (!chrome) throw new Error("Chrome not found. Install it or set CHROME_PATH.");
+  if (!chrome) throw new Error("Chrome not found. Install Google Chrome or set CHROME_PATH. Windows is not supported.");
+  if (isReel) {
+    try { execFileSync("ffmpeg", ["-version"], { stdio: "ignore" }); }
+    catch { throw new Error("ffmpeg not found. Install it (macOS: brew install ffmpeg) to make reels."); }
+  }
 
   const holdIndex = config.frames.findLastIndex((frame) => frame.seconds == null);
   const seconds = config.frames.map((frame, i) => frame.seconds ?? Number((0.8 + countWords(frame.text) / 4 + (i === holdIndex ? 1.5 : 0)).toFixed(1)));
@@ -35,13 +42,14 @@ function main(arg) {
 
   const out = join(dir, "frames");
   const tmp = mkdtempSync(join(tmpdir(), "ig-studio-"));
+  // Clear old frames so a re-render with fewer slides can't leave stale images behind.
+  rmSync(out, { recursive: true, force: true });
   mkdirSync(out, { recursive: true });
   try {
     const pngs = config.frames.map((frame) => {
       const png = join(out, `${frame.id}.png`);
       const hash = encodeURIComponent(JSON.stringify({ ...config.data, ...frame.state }));
-      rmSync(png, { force: true });
-      execFileSync(chrome, ["--headless=new", "--hide-scrollbars", "--force-device-scale-factor=1", "--no-first-run", `--user-data-dir=${join(tmp, "chrome")}`,
+      execFileSync(chrome, ["--headless=new", "--hide-scrollbars", "--force-device-scale-factor=1", "--no-first-run", "--virtual-time-budget=3000", `--user-data-dir=${join(tmp, "chrome")}`,
         `--window-size=1080,${isReel ? 1920 : 1350}`, `--screenshot=${png}`, `${pathToFileURL(template).href}#${hash}`], { stdio: "ignore" });
       if (!existsSync(png)) throw new Error(`Chrome did not write ${png}`);
       return png;

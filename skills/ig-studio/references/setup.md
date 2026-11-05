@@ -5,7 +5,7 @@ Stages run in order. Set `stage` in `state.yaml` after each one, so an interrupt
 ## check
 
 1. Create the folders `formats`, `reviews`, `calendar` and `assets`, and each project file below. Create a file only if it's absent. Never overwrite one.
-2. Check for Node 18 or newer, `python3`, `ffmpeg` with `libx264` (`ffmpeg -hide_banner -encoders | grep libx264`), Chrome or `CHROME_PATH`, and the `ig-*` skills. Before installing anything, get the user's approval. Install `ig-*` using the upstream README's instructions.
+2. Check for Node 18 or newer, `python3`, `ffmpeg` with `libx264` (`ffmpeg -hide_banner -encoders | grep libx264`), Chrome or `CHROME_PATH`, and the `ig-*` skills. Before installing anything, get the user's approval. The `ig-*` skills come with ig-studio as a plugin dependency; if they're missing, tell the user to reinstall ig-studio with the commands in its README.
 3. Tell the user what's needed for browser access: Claude's browser pane or the Chrome extension, logged in to their Instagram. It's optional, because they can paste numbers into `numbers.md`.
 
 Set `stage: brand`. If something required is still missing, stop here and say what's left.
