@@ -4,10 +4,6 @@ A Claude plugin for solo builders who have a product but aren't strong at market
 
 > **Status:** early version (0.1), still being tested.
 
-## Used for real
-
-All the content on [@pulseai.chat](https://www.instagram.com/pulseai.chat/) is made with ig-studio. The goal is to grow the page over the next 3 to 4 months. Let's see how it goes.
-
 ## What you get
 
 | Post | What it is | Size |
@@ -80,6 +76,10 @@ It fixes the post and the design for that type of post, re-renders any you haven
 - **"ffmpeg not found":** `brew install ffmpeg` (macOS) or `sudo apt install ffmpeg` (Linux).
 - **A scheduled run never finished:** it's probably waiting on a permission prompt. Approve it in the desktop app, and watch the first run once.
 - **`ig-*` skills missing:** run the install commands again.
+
+## Used for real
+
+All the content on [@pulseai.chat](https://www.instagram.com/pulseai.chat/) is made with ig-studio. The goal is to grow the page over the next 3 to 4 months. Let's see how it goes.
 
 ## Credits
 
