@@ -12,7 +12,9 @@ Be clear on this before you install:
 - **Reels:** short text-on-screen videos, about 20 seconds, with **no sound**. You add music in the Instagram app when you upload.
 - **Filmed formats** (optional): if you pick a format that needs you on camera, ig-studio writes the script and shot list and you film it.
 
-Every week you get one folder per post, plus a summary that tells you what to upload on which day:
+It also learns as it goes. Before making each week's posts, it looks at how last week's did, keeps what's working, changes or pauses what isn't, and tells you what it changed and why. It needs your numbers to do this (see [Reading your Instagram numbers](#reading-your-instagram-numbers)). Without them it says so instead of guessing, and its calls get better as the weeks of data add up.
+
+Every week you get one folder per post, plus a summary that tells you what to upload on which day, what worked last week, and what it changed:
 
 ```text
 # Week of 2026-11-09
