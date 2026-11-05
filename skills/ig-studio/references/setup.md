@@ -108,6 +108,7 @@ Every field must be filled in:
 | Assets | What it needs, and the fallback |
 | Cadence | Fixed count per week, or flexible |
 | Reel length limit | Default 20s |
+| Sound | For reels: a file or folder in `assets/sounds/` to pick from, or none (silent, music added in the app) |
 | Success test | Metric, bar, and number of posts before judging |
 | Status | testing, kept, paused or retired, with date and reason |
 

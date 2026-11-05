@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // Renders one post: HTML template to frames/*.png with headless Chrome, then reel-video.mp4 for reels.
 // Usage: node render.mjs path/to/config.json
-// config.json: { container: "reel" | "carousel" | "image", template, data, maxSeconds: 20,
+// config.json: { container: "reel" | "carousel" | "image", template, data, maxSeconds: 20, audio,
 //                frames: [{ id, text, state, seconds }] }
 // The template reads { ...data, ...state } from JSON.parse(decodeURIComponent(location.hash.slice(1))).
 // A frame's time is 0.8s + words / 4, plus a 1.5s hold on the last frame without its own seconds.
-// An end card is an ordinary last frame with "seconds": 1. Reels get a silent track; sound is added in the app.
+// An end card is an ordinary last frame with "seconds": 1. A reel uses "audio" (a sound file path, relative to config.json) looped
+// or trimmed to the reel's length with a 1s fade-out. Without it, the reel gets a silent track.
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -27,6 +28,8 @@ function main(arg) {
   const isReel = (config.container ?? "reel") === "reel";
   const template = resolve(dir, config.template);
   if (!existsSync(template)) throw new Error(`Template not found: ${template}`);
+  const audio = isReel && config.audio ? resolve(dir, config.audio) : null;
+  if (audio && !existsSync(audio)) throw new Error(`Audio not found: ${audio}`);
   const chrome = CHROMES.filter(Boolean).find((path) => existsSync(path));
   if (!chrome) throw new Error("Chrome not found. Install Google Chrome or set CHROME_PATH. Windows is not supported.");
   if (isReel) {
@@ -59,9 +62,12 @@ function main(arg) {
     const entry = (png) => `file '${png.replaceAll("'", "'\\''")}'\n`;
     const list = join(tmp, "list.txt");
     writeFileSync(list, pngs.map((png, i) => `${entry(png)}duration ${seconds[i]}\n`).join("") + entry(pngs.at(-1)));
-    execFileSync("ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", list, "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-t", String(total),
-      "-vf", "fps=30,format=yuv420p", "-c:v", "libx264", "-crf", "18", "-c:a", "aac", "-movflags", "+faststart", join(dir, "reel-video.mp4")], { stdio: ["ignore", "ignore", "inherit"] });
-    console.log(`wrote reel-video.mp4, ${total}s`);
+    const sound = audio
+      ? ["-stream_loop", "-1", "-i", audio, "-af", `afade=t=out:st=${Math.max(0, total - 1)}:d=1`]
+      : ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"];
+    execFileSync("ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", list, ...sound, "-map", "0:v", "-map", "1:a", "-t", String(total),
+      "-vf", "fps=30,format=yuv420p", "-ar", "44100", "-c:v", "libx264", "-crf", "18", "-c:a", "aac", "-movflags", "+faststart", join(dir, "reel-video.mp4")], { stdio: ["ignore", "ignore", "inherit"] });
+    console.log(`wrote reel-video.mp4, ${total}s, ${audio ? "with sound" : "silent"}`);
   } finally {
     rmSync(tmp, { recursive: true, force: true });
   }

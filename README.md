@@ -4,14 +4,20 @@ A Claude plugin for solo builders who have a product but aren't strong at market
 
 > **Status:** early version (0.1), still being tested.
 
+## Used for real
+
+All the content on [@pulseai.chat](https://www.instagram.com/pulseai.chat/) is made with ig-studio. The goal is to grow the page over the next 3 to 4 months. Let's see how it goes.
+
 ## What you get
 
 | Post | What it is | Size |
 |---|---|---|
-| Carousel | Designed slides in your brand colours and fonts, made from text. No stock photos or AI images | 1080×1350, up to 20 slides |
+| Carousel | Designed slides in your brand colours and fonts, with your own images if you add them. No stock photos or AI images | 1080×1350, up to 20 slides |
 | Single image | Same as a carousel slide | 1080×1350 |
-| Reel | A text-on-screen video, about 20s, with **no sound**. Add music in the Instagram app | 1080×1920 MP4 |
+| Reel | A text-and-image video, about 20s, with your background sound or silent (add music in the app) | 1080×1920 MP4 |
 | Filmed (optional) | A script and shot list. You film it | |
+
+**Sound and images in reels:** put background sounds in `assets/sounds/` and images in `assets/`, then tell Claude to use them ("use calm-piano.mp3 for the tip reels"). It stitches the images into the frames and fits the sound to the reel with a fade-out. Here's [an example reel](https://www.instagram.com/reel/DfRC8pWhr4z/). Use only sounds and images you have the rights to, because Instagram can mute copyrighted music. A free sound pack is coming to this repo.
 
 Each post gets its own dated folder with the file and a `caption.txt` ready to paste. Every week you also get a summary:
 
