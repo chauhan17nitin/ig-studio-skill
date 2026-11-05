@@ -36,7 +36,7 @@ You can start a week by typing **"generate next week's content"**, or have it ru
 
 ## Requirements
 
-- **Claude Code** (in the terminal, or inside the Claude desktop app). macOS or Linux. Windows isn't supported.
+- **Claude Code**, ideally inside the **Claude desktop app** for its browser pane and scheduled tasks. The terminal works too. macOS or Linux. Windows isn't supported.
 - A few free tools. Setup checks for them and offers to install any that are missing:
 
 | Tool | Why it's needed |
@@ -65,7 +65,7 @@ Both marketplaces are needed. The first one provides `instagram-agent`, which do
 ## Start
 
 1. Make an empty folder for your brand, for example `~/instagram/my-brand`.
-2. Open Claude Code in that folder (`cd ~/instagram/my-brand && claude`).
+2. Open that folder in a Claude Code session in the **Claude desktop app** (recommended, because its browser pane lets it read your Instagram numbers). From a terminal, `cd ~/instagram/my-brand && claude` also works.
 3. Type something like:
 
    > Set up Instagram content for my brand. Our website is example.com and our handle is @example.
@@ -86,12 +86,18 @@ At the end of setup it offers to create a scheduled task in the **Claude desktop
 
 ## Reading your Instagram numbers
 
-To learn what's working, it needs your post stats. You choose:
+To learn what's working, it needs your post stats.
 
-- **Browser (optional):** it reads your own insights through Instagram already logged in in your browser, via Claude's browser pane or the Claude in Chrome extension. It reads slowly and stops at any sign of rate limiting.
-- **Paste:** you copy the numbers into `numbers.md` before each run.
+**Recommended: run everything in the Claude desktop app.** The app has a built-in browser pane. Open it once, log in to your Instagram there yourself, and you're done. From then on, setup and every weekly run can read your post insights on their own: which posts got views, shares, saves and follows. That's what lets it see what's working and adjust next week's posts. It reads slowly, only from your own account, and stops at any sign of rate limiting.
 
-Either way it never asks for your password.
+So for the best results, do your setup and make your posts in the Claude app, not the terminal.
+
+Other options:
+
+- **Claude in Chrome extension:** works the same way, using the Instagram login in your own Chrome.
+- **Paste:** copy your numbers into `numbers.md` before each run. It works anywhere, but it's manual, and if you skip it the week is planned without data.
+
+It never asks for your password. You log in yourself.
 
 ## Cost
 
