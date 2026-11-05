@@ -36,10 +36,20 @@ The user is present and wants something specific. Do that, reading only the sect
 | Add a format | `setup.md`: Suggest if they want ideas, then Format |
 | Retire, resume or restructure a format | Update its file and status with the date and their reason |
 | Research competitors | `setup.md`: Competitors |
-| Change a post | Edit it, re-render it, and add a dated note to its row in `log.md` |
+| Change a post | Edit it, re-render it, and add a dated note to its row in `log.md`. Then follow Fixing how posts look if the change is visual |
 | Move a post | Rename its folder to the new date, then update its log row and plan link |
 | Supply a missing fact | Save it, then finish the `NEEDS INPUT` post |
 | Questions about results | Answer from `reviews/` and `log.md`, stating confidence |
+
+## Fixing how posts look
+
+Layout, alignment, sizing, spacing, font or color problems come from the format, so fixing only the one post brings the problem back next week:
+
+1. Fix the cause in `formats/<name>/template.html`, not in the post's copy. If the fix is a rule, such as "headline at most 6 words" or "never place text in the bottom third", add it to the format's copy rules.
+2. Re-render the post and view it. Then re-render any other post from that format with status `ready` that hasn't been uploaded, and check those too.
+3. Tell the user in one line what changed in the format, so they know later posts get it.
+
+Every post must still match the size and safe area in Post rules in `weekly.md`. If the user's request would push text outside the safe area, say so and suggest the closest fix that stays inside.
 
 ## Saving what the user says
 

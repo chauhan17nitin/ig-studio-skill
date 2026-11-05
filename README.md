@@ -72,6 +72,24 @@ Both marketplaces are needed. The first one provides `instagram-agent`, which do
 
 Have your website, a few posts or messages that sound like you, and your brand colours ready. It asks at most 6 questions at a time.
 
+## Sizes and fixing how a post looks
+
+Posts are made at Instagram's recommended sizes, so you don't need to resize anything:
+
+| Post | Size | Made by |
+|---|---|---|
+| Reel | 1080×1920 (9:16), MP4 | Chrome draws each frame, then ffmpeg joins them into a video |
+| Carousel | 1080×1350 (4:5), up to 20 slides | Chrome draws each slide as an image |
+| Single image | 1080×1350 (4:5) | Chrome draws it as an image |
+
+Text stays inside Instagram's safe area, so it isn't hidden behind the like and comment buttons or the caption. Claude looks at each post after making it and re-renders any where the text is clipped or out of place.
+
+**If something still looks off, tell Claude, with an example.** For example:
+
+> The headline on the Nov 11 carousel is too close to the top and the second line is cut off. Move it lower and keep headlines to one line.
+
+Claude fixes that post and changes the post type's design and rules in your project folder (`formats/<name>/`), so later posts come out right too. It re-renders any other posts you haven't uploaded yet. It tells you what it changed, and you don't have to repeat yourself next week.
+
 ## Uploading a post
 
 Open `calendar/<month>/<date>-<name>/`. Upload `reel-video.mp4` for a reel, or the images in `frames/` in order for a carousel. Then paste `caption.txt` as the caption, and `alt.txt` as alt text if there is one. Posts marked `NEEDS INPUT` are missing a fact only you can give, and the summary says which.
