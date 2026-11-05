@@ -72,6 +72,7 @@ Any error on one post: record it, mark that post `NEEDS INPUT` and continue with
   "template": "../../../formats/FORMAT/template.html",
   "data": {},
   "maxSeconds": 20,
+  "audio": "../../../assets/sounds/FILE.mp3",
   "frames": [
     { "id": "frame-1", "text": "Text shown on this frame, used for reading time", "state": {} },
     { "id": "end-card", "seconds": 1, "state": { "card": true } }
@@ -92,7 +93,8 @@ Write the summary in the shape below and end the run with it.
 | Single image | 1080x1350 | `frames/`, plus `alt.txt` | Same as carousel |
 
 - A post isn't done until it has its final files and a `caption.txt` that's ready to paste.
-- Reels have a silent track, and sound can be added in the Instagram app. The summary should say so.
+- A reel gets sound when its format names one, or when the user asks for one: set `audio` in `config.json` to a file in `assets/sounds/`. The sound loops or is trimmed to fit, with a 1s fade-out. Use only sounds the user has supplied and has the rights to use. Without `audio`, leave the field out: the reel is silent, and the summary should say to add music in the app.
+- Images the user supplies go in `assets/` and are shown by the template. Never use images the user hasn't supplied.
 - Don't edit published posts to match new rules. Apply new rules to new posts.
 
 ## Judging a format
